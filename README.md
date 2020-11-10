@@ -1,2 +1,4 @@
 # raspberrypi-temperature
-Temperature measurements and sending
+
+Temperature measurements via USB thermometer on Raspberry PI.
+
