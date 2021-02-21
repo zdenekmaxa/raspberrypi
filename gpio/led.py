@@ -1,20 +1,37 @@
+"""
+Blinkind LEDs via GPIO.
+
+Raspberry Pi power: 5.3V
+
+According to Conrad experiments booklet.
+
+Using 4, 17, 18, 27 GPIO pins. Also 4, 18, 23, 24.
+
+Connecting just one resistor on GND branch doesn't properly work:
+    not possible to lit all LEDs at once, some turned off when setting all
+    pins True (blink_all() function). Each LED needs to have resistor on the
+    + (set pin) branch - turning all LEDs at once is possible.
+
+Connection:
+    black: common GND pin
+    red, blue, green, yellow to corresponding LEDs
+    red: pin 4
+    blue: pin 18
+    green: pin 23
+    yellow: pin 24
+
+LED: 
+    anode: + (longer pin)
+    cathode: - (shorter pin)
+    + ---|>|--- -
+
+"""
+
 import time
 
 import RPi.GPIO as GPIO
 
-# power: 5.3V
 
-# whew using pins 4, 17, 18, 27
-#   red 4 was lit a little after start, before running this progrem
-#   it was not possible to lit all LEDs at once, some went off always
-#   some dependencies between pins?
-
-# using these values as in one of the exercises
-# -> behaving the same, still can't lid all leds at once
-
-# after putting each LED its own resitor, and not using just one
-# resiston on GND wire, as it's instructed int the booklet exercise,
-# litting all LEDS at once works
 LEDS = {"red": 4, "blue": 18, "green": 23, "yellow": 24}
 
 
@@ -68,3 +85,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

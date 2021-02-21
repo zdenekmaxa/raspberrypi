@@ -1,3 +1,29 @@
+"""
+Reading temperature via Dallas DS18B20 Onewire sensors.
+
+Sensor:
+    red: Vdd +
+    black: GND
+    yellow: DQ data
+
+GPIO:
+    pin 1 (3.3 V +) Vdd
+    pin 4 DQ
+    pin GND GND
+
+Resistor 4k7 between pin 1 and 4.
+
+Example reading from sys file:
+
+0f 00 4b 46 ff ff 06 10 0c : crc=0c YES
+0f 00 4b 46 ff ff 06 10 0c t=7375
+
+-> parsing CRC YES
+-> parsing temperature (last entry) and by 1000 division.
+
+"""
+
+
 import os
 import time
 
